@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<nav class="navbar navbar-expand-md m-0" id="navbar">
+    <!--navigation bar logo-->
+    <a class="navbar-brand ml-3" id="override-name" href="{% url 'home' %}">
+        <h1 class="navbar-title">rally</h1>
+    </a>
+    <!--navigation bar shrinks to button on small screens-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon">
+        </span>
+    </button>
+    <!--navigation bar links listed in two navbars-->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <!--left aligned navigation links-->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link nav-link-passive" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-passive" href="{% url 'start_plan' %}">Plan</a>
+            </li>
+        </ul>
+        <!--right aligned navigation links-->
+        <ul class="navbar-nav ml-auto mr-3">
+            <!--display some links with consideration for user status-->
+            {% if user.is_authenticated %}
+            <li class="nav-item" >
+                <a class="nav-link nav-link-passive" href="{% url 'account_dashboard' %}">my account</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-passive" href="{% url 'logout' %}">log out</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link nav-link-passive" href="{% url 'signup' %}">sign up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-passive" href="{% url 'login' %}">log in</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

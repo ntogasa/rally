@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+#navbar {
+    background-color: #3F3F3F;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+a.colored {
+    color: #8E8E8E;
+}
+
+li a.nav-link-active {
+    font-weight: bold;
+    color: #fff;
+}
+
+li a.nav-link-passive {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+li a.nav-link-dropdown {
+    font-weight: bold;
+    color: #000000;
+}
+
+div.banner-box {
+  background-image: url('/static/images/mountain_sunset.png');
+  width: 100%;
+  height: 100%;
+}
+
+div.comment-history {
+    position: relative;
+    margin-top: 1rem;
+}
+
+div.dropdown-divider {
+    margin: 0rem;
+}
+
+form.comment-box {
+    height: 50px;
+    width: 100%;
+}
+
+h1.heading {
+    font-family: 'Alata', sans-serif;
+    font-size: 2rem;
+}
+
+h1.navbar-title {
+    font-family: 'Alata', sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #FF8E0F;
+}
+
+h1.spaced-heading {
+    margin-top: 7rem;
+    margin-bottom: 1.5rem;
+}
+
+h2.subheading {
+    font-family: 'Alata', sans-serif;
+    font-size: 1.7rem;
+}
+
+h3.subheading {
+    font-family: 'Alata', sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+h4.subheading {
+    font-family: 'Alata', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+textarea {
+    width: 100%;
+    max-height: 100%;
+    overflow-y: unset;
+    overflow-x: auto;
+}
+
+ul.reply {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+ul.categories {
+    list-style-type: none;
+    padding-inline-start: 0rem;
+}
