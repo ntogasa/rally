@@ -3,6 +3,22 @@ from django.views import generic
 from .models import Expedition
 
 # Create your views here.
-def plan_list_view(request):
-    current_user = request.user
-    plans_to_show = Expedition.objects.filter()
+
+class ExpeditionsList(generic.ListView):
+
+    def get(self, request, *args, **kwargs):
+        """Handle GET request and return response"""
+        current_user = request.user
+        queryset = Expedition.objects.get.all()
+
+
+    def post(self, request, *args, **kwargs):
+        """Handle POST request and return response"""
+        current_user = request.user
+        queryset = Expedition.objects.get.all()
+
+
+class ExpeditionDetail(generic.DetailView):
+    model = Expedition
+    context_object_name = 'Expedition'
+    template_name = 'expedition/expedition_detail.html'

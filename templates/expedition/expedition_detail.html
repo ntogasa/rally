@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base/base.html' %}
+
+{% block title %}{{expedition.namee}}{% endblock %}
+
+{% block content %}
+This is your expedition.
+{% endblock %}
