@@ -7,9 +7,9 @@ from django.utils import timezone
 class Expedition(models.Model):
     """Represents a specific backpacking trip plan"""
     name = models.CharField(max_length=200, default='no title')
-    slug = models.SlugField(max_length=200)
+    slug = models.SlugField(max_length=200, null=True)
     leader = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    goal = models.CharField(max_length=200)
+    goal = models.CharField(max_length=200, null=True)
     description = models.CharField(max_length=1000, default='no description')
     date_published = models.DateField(default=timezone.now)
 
