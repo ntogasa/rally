@@ -18,11 +18,15 @@ class ExpeditionsList(generic.ListView):
         queryset = Expedition.objects.get.all()
 
 
-class ExpeditionDetail(generic.DetailView):
 
-    def get(self, request, *args, **kwargs):
-        """Handle GET request and return response"""
-
-        model = Expedition
-        context_object_name = 'Expedition'
-        template_name = 'expedition/expedition_detail.html'
+def expedition_detail_view(request, slug):
+    """ This fnc provides the full page responses for each Expedition object
+    :param slug         the 'slug' associated with a specific expedition object in the database
+    :return response    the appropriate response
+    """
+    # Retrieve a particular blog post object (from models.Post) specified by the provided slug parameter
+    expedition = Expedition.objects.get(slug=slug)
+    # The keys listed below are used by the template to dynamically retrieve data
+    context = {'expedition': expedition}
+    # return a response consisting of the request and a template filled with the context data
+    return render(request, "expedition/expedition_detail.html", context=context)
