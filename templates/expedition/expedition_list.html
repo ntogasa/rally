@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends 'base/base.html' %}
+
+{% block title %}My expeditions{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h1 class="heading spaced-heading">My expeditions</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            {% for expedition in expeditions %}
+            <h1>{{ expedition.name }}</h1>
+            <p>{{ expedition.title }}</p>
+            <p>{{ expedition.description }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
