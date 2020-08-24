@@ -19,6 +19,10 @@ class ExpeditionsList(generic.ListView):
 
 
 class ExpeditionDetail(generic.DetailView):
-    model = Expedition
-    context_object_name = 'Expedition'
-    template_name = 'expedition/expedition_detail.html'
+
+    def get(self, request, *args, **kwargs):
+        """Handle GET request and return response"""
+
+        model = Expedition
+        context_object_name = 'Expedition'
+        template_name = 'expedition/expedition_detail.html'
