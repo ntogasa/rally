@@ -13,8 +13,14 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             {% for expedition in expeditions %}
-            <h1>{{ expedition.name }}</h1>
+            <h1 class="heading">
+                <a class="colored" href="{% url 'expedition' expedition.pk expedition.slug %}">
+                    {{ expedition.name }}
+                </a>
+            </h1>
             <p>{{ expedition.title }}</p>
+            <p>Goal: {{ expedition.goal }}</p>
+            <p>Leader: {{ expedition.leader }}</p>
             <p>{{ expedition.description }}</p>
             {% endfor %}
         </div>
