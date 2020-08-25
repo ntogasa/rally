@@ -26,7 +26,7 @@ with open('etc/secret_key.txt') as file:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'social_django',
     'apps.expedition',
     'apps.user',
 ]
@@ -51,6 +52,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',       # Social media login
+]
+
+# User authentication (Social media login)
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 ROOT_URLCONF = 'main.urls'
@@ -66,6 +75,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -133,8 +144,29 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # CRISPY FORMS
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# LOGIN REDIRECT
+# Registration
 LOGIN_REDIRECT_URL = '/'
-
-# LOGOUT REDIRECT
 LOGOUT_REDIRECT_URL = '/'
+
+# Social Authentication
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+with open('etc/fb_secret.txt') as file:                             # FB Secret Key
+    SOCIAL_AUTH_FACEBOOK_SECRET = file.read().strip()
+with open('etc/fb_app_id.txt') as file:                             # FB App ID
+    SOCIAL_AUTH_FACEBOOK_KEY = file.read().strip()
+with open('etc/google_secret.txt') as file:                         # Google Secret Key
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = file.read().strip()
+with open('etc/google_client_id.txt') as file:                      # Google Client ID
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = file.read().strip()
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)

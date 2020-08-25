@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('expedition/', include('apps.expedition.urls')),
     path('user/', include('apps.user.urls')),
+    path('user/', include('social_django.urls')),
 ]
