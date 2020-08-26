@@ -59,7 +59,13 @@
         </div>
     </div>
     <div class="row d-flex justify-content-center">
-        <div class="fb-login-button" data-size="medium" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
+        <div class="field">
+            <div class="control">
+                <a href="{% url 'social:begin' 'facebook' %}" class="button">
+                    <span>Login with Facebook</span>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
