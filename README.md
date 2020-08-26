@@ -1,0 +1,1 @@
+**rally** is a web application in development that is intended to help users plan backpacking trips. Features will include task delegation, a logistics dashboard, chat, and reminders. 
