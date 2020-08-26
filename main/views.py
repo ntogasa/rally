@@ -11,9 +11,11 @@ def home_view(request):
     """Handles requests for the home page."""
     return render(request, 'home.html')
 
+
 @login_required
 def settings_view(request):
-    """Handles social media connection settings"""
+    """Handles social media connection settings. Users are able to disconnect from social media accounts,
+    and set passwords for their rally account."""
     # recognize the user
     user = request.user
     # Check if user is logged into Facebook
@@ -29,9 +31,10 @@ def settings_view(request):
         'can_disconnect': can_disconnect,
     })
 
+
 @login_required
 def set_password_view(request):
-    """Handles the setting up of account passwords"""
+    """Handles the setting up of account passwords."""
     if request.user.has_usable_password():
         PasswordForm = PasswordChangeForm
     else:
