@@ -22,6 +22,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('expedition/', include('apps.expedition.urls')),
+    path('settings/', views.settings_view, name='settings'),
+    path('settings/set_password', views.set_password_view, name='set_password'),
     path('user/', include('apps.user.urls')),
     path('user/', include('social_django.urls')),
 ]

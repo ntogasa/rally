@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% extends 'base/base.html' %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!--Heading-->
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h1 class="heading spaced-heading">Settings</h1>
+            <hr>
+        </div>
+    </div>
+    <!--Password settings heading-->
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <h3 class="subheading">Password</h3>
+            <hr>
+        </div>
+    </div>
+    <!--Reset password option-->
+    {% if user.has_usable_password %}
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <p>
+                <a href="{% url 'password_reset' %}">Reset your password</a>
+            </p>
+        </div>
+    </div>
+    {% endif %}
+    <!--Social media account heading-->
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <h3 class="subheading">Social Media</h3>
+            <hr>
+        </div>
+    </div>
+    <!--Social media account connections-->
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            {% if facebook_login %}
+            <p>Connected as
+                <a href="https://facebook.com/{{ facebook_login.extra_data.id }}/" target="_blank">
+                    {{ facebook_login.extra_data.id }}
+                </a>
+            </p>
+            {% if can_disconnect %}
+            <form method="post" action="{% url 'social:disconnect' 'facebook' %}">
+                {% csrf_token %}
+                <button type="submit">Disconnect from Facebook</button>
+            </form>
+            {% else %}
+            <button type="button" disabled>Disconnect from Facebook</button>
+            <p>You must <a href="{% url 'password' %}">define a password</a> for your account before disconnecting from Facebook.</p>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
